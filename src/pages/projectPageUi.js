@@ -1,7 +1,14 @@
-export async function getTestRuns(){
-    return $('#navigation-overview-runs').getText();
+import { ADD_PROJECT_SELECTOR } from "../constants/addProjectSelector";
+import { SELECTOR } from "../services/projectService";
+
+export async function clickEditProject() {
+  await $(SELECTOR.EDIT_PROJECT).click();
 }
 
-export async function getMilestones(){
-    return $('#navigation-overview-viewmilestones').getText();
+export function getNameProject() {
+  return $(ADD_PROJECT_SELECTOR.NAME).getValue();
+}
+
+export function getAnnouncementProject() {
+  return $(ADD_PROJECT_SELECTOR.ANNOUNCEMENT).getValue();
 }
