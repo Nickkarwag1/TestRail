@@ -1,102 +1,119 @@
-import {app} from "../config/config";
-import {HEADER_FIELDS, REQUEST, STATUS_CODE} from "../components/components";
+import {app, USER} from "../config/config";
+import STATUS_CODES from "../constants/statusCodes";
+import ENDPOINTS, {applyParams} from "../constants/endpoints";
+import HEADERS from "../constants/headers";
+import {TOKEN} from "../constants/components";
+import CONTENT_TYPES from "../constants/contentTypes";
+import {createProject} from "../services/projectService";
 
+const {OK} = STATUS_CODES;
 
 describe("TestRail API ", function () {
   it("Should get projects with login", function (done) {
     app
-      .get(REQUEST.GET.PROJECTS)
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .expect(STATUS_CODE.OK, done);
+      .get(ENDPOINTS.GET.PROJECTS)
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .expect(OK, done);
   });
 
   it("Should get by email with login", function (done) {
+
+    const getUserByEmail=  `index.php?/api/v2/get_user_by_email&email=${USER.EMAIL}`;
     app
-      .get(REQUEST.GET.BY_EMAIL)
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .expect(STATUS_CODE.OK, done);
+      .get(getUserByEmail)
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .expect(OK, done);
   });
 
   it("Should creat new project with login", function (done) {
     app
-      .post(REQUEST.POST.CREAT)
+      .post(ENDPOINTS.POST.CREAT)
       .send({
         name: "New project using API",
         announcement: "This is the description for the project",
         show_announcement: true,
       })
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .expect(STATUS_CODE.OK, done);
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .expect(OK, done);
   });
 
-  it("Should delete new project with login", function (done) {
+  it("Should delete new project with login ", async function () {
+    const project = await createProject();
+
+    const id = project.body.id;
     app
-      .post(REQUEST.POST.DELETE)
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .set(HEADER_FIELDS.CONTENT_TYPE, HEADER_FIELDS.APPLICATION_JSON)
-      .expect(STATUS_CODE.OK, done);
+      .post(`${ENDPOINTS.POST.DELETE}${id}`)
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .set(HEADERS.CONTENT_TYPE, CONTENT_TYPES.APPLICATION_JSON)
+      .expect(OK);
+
   });
 
   it("Should creat new section with login", function (done) {
+    // TODO: Create suite and get id for section body
     app
-      .post(REQUEST.POST.SECTION)
+      .post(ENDPOINTS.POST.SECTION)
       .send({
         suite_id: 1,
         name: "This is a new section",
       })
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .expect(STATUS_CODE.OK, done);
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .expect(OK, done);
   });
 
   it("Should DELETE new section with login", function (done) {
     app
-      .post(REQUEST.POST.DELETE_SECTION)
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .set(HEADER_FIELDS.CONTENT_TYPE, HEADER_FIELDS.APPLICATION_JSON)
-      .expect(STATUS_CODE.OK, done);
+      .post(ENDPOINTS.POST.DELETE_SECTION)
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .set(HEADERS.CONTENT_TYPE, CONTENT_TYPES.APPLICATION_JSON)
+      .expect(OK, done);
   });
 
   it("Should add new case with login", function (done) {
     app
-      .post(REQUEST.POST.ADD_CASE)
+      .post(ENDPOINTS.POST.ADD_CASE)
       .send({
         section_id: 1,
         title: "Case using API",
       })
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .set(HEADER_FIELDS.CONTENT_TYPE, HEADER_FIELDS.APPLICATION_JSON)
-      .expect(STATUS_CODE.OK, done);
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .set(HEADERS.CONTENT_TYPE, CONTENT_TYPES.APPLICATION_JSON)
+      .expect(OK, done);
   });
 
   it("Should get cases with login", function (done) {
     app
-      .get(REQUEST.GET.CASES)
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .expect(STATUS_CODE.OK, done);
+      .get(ENDPOINTS.GET.CASES)
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .expect(OK, done);
   });
 
   it("Should DELETE new cases with login", function (done) {
+    const suiteId = 1;
+
+    const url = applyParams(`${ENDPOINTS.POST.DELETE_CASES}${suiteId}`, [{paramName: 'soft', paramValue:'1'}]);
+
     app
-      .post(REQUEST.POST.DELETE_CASES)
+      .post(url)
       .send({
         case_ids: [5], // next id = 6
       })
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .set(HEADER_FIELDS.CONTENT_TYPE, HEADER_FIELDS.APPLICATION_JSON)
-      .expect(STATUS_CODE.OK, done);
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .set(HEADERS.CONTENT_TYPE, CONTENT_TYPES.APPLICATION_JSON)
+      .expect(OK, done);
   });
 
   it("Should get statuses with login", function (done) {
     app
-      .get(REQUEST.GET.STATUSES)
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .expect(STATUS_CODE.OK, done);
+      .get(ENDPOINTS.GET.STATUSES)
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .expect(OK, done);
   });
 
   it("Should get suites with login", function (done) {
     app
-      .get(REQUEST.GET.SUITES)
-      .set(HEADER_FIELDS.AUTHORIZATION.AUTH, HEADER_FIELDS.AUTHORIZATION.TOKEN)
-      .expect(STATUS_CODE.OK, done);
+      .get(ENDPOINTS.GET.SUITES)
+      .set(HEADERS.AUTHORIZATION, TOKEN)
+      .expect(OK, done);
   });
 });
