@@ -6,12 +6,12 @@ import {logIn} from "../pages/loginPage";
 import {getCurrentUsername, openProject} from "../pages/homePage";
 import {getProductDescription, getCompanyName, getRandomBoolean} from "../utils/faker";
 
-describe("", async function (){
+describe("Creat project using API", async function (){
     before(async ()=>{
         await deleteAllProjects();
     })
     let projectName;
-    it("Should creat new project with login only", async function (done) {
+    it("Should creat new project with login ", async function (done) {
         const project = {
             name: getCompanyName(),
             announcement: getProductDescription(),
@@ -21,7 +21,7 @@ describe("", async function (){
          const response = await createProject(project);
           projectName = response.body?.name
     });
-    it("Validate created project only", async function (){
+    it("Validate created project ", async function (){
         await browser.url('/');
         await logIn(USER)
 
