@@ -1,14 +1,17 @@
-import { ADD_PROJECT_SELECTOR } from "../constants/addProjectSelector";
-import { SELECTOR } from "../services/projectService";
+import { ADD_PROJECT_SELECTORS } from "./addProjectViaUiPage";
+
+export const SELECTOR = {
+  EDIT_PROJECT: "//a[contains(@class, 'button-edit')]",
+};
 
 export async function clickEditProject() {
   await $(SELECTOR.EDIT_PROJECT).click();
 }
 
-export function getNameProject() {
-  return $(ADD_PROJECT_SELECTOR.NAME).getValue();
+export function getProjectName() {
+  return $(ADD_PROJECT_SELECTORS.NAME).getValue();
 }
 
-export function getAnnouncementProject() {
-  return $(ADD_PROJECT_SELECTOR.ANNOUNCEMENT).getValue();
+export function getProjectAnnouncement() {
+  return $(ADD_PROJECT_SELECTORS.ANNOUNCEMENT).getValue();
 }
