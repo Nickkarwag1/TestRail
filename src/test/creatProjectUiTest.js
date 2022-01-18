@@ -6,13 +6,13 @@ import { expect } from "chai";
 import {
   ADD_PROJECT_SELECTORS,
   addProjectViaUi,
-} from "../pages/addProjectViaUiPage";
+} from "../pages/addProjectViaUiPageAndSelectors";
 import {
   clickEditProject,
   getProjectAnnouncement,
   getProjectName,
 } from "../pages/projectPageUi";
-import { isPageOpened } from "../constants/isPageOpened";
+import { isPageOpened } from "../pages/isPageOpened";
 import { maximize } from "../utils/browserActions";
 import { project } from "../dataProject/randomDataProjects";
 
@@ -21,7 +21,7 @@ describe("Creat project UI test only", async function () {
     await deleteAllProjects();
     await maximize();
   });
-  it("Should login and create a new project UI test", async function (done) {
+  it("Should login and create a new project UI test", async function () {
     await browser.url("/");
     await logIn(USER);
 

@@ -1,4 +1,4 @@
-import { ADD_PROJECT_SELECTORS } from "./addProjectViaUiPage";
+import { ADD_PROJECT_SELECTORS } from "./addProjectViaUiPageAndSelectors";
 
 export const SELECTOR = {
   EDIT_PROJECT: "//a[contains(@class, 'button-edit')]",
