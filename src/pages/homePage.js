@@ -1,7 +1,7 @@
 const SELECTOR = {
   USERNAME: "//span[@class = 'navigation-username']",
-  OPEN_PROJECT: `//div[contains(@class, 'row project')]//a[text() = '${projectName}']`,
   CLICK_ADD_PROJECT: "#sidebar-projects-add",
+  OPEN_PROJECT: "//div[contains(@class, 'row project')]//a[text() = "
 };
 
 export function getCurrentUsername() {
@@ -9,7 +9,7 @@ export function getCurrentUsername() {
 }
 
 export async function openProject(projectName) {
-  await $(SELECTOR.OPEN_PROJECT).click();
+  await $(`${SELECTOR.OPEN_PROJECT}'${projectName}']`).click();
 }
 
 export async function clickAddProject() {

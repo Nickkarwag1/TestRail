@@ -8,20 +8,33 @@ import {
   addProjectViaUi,
 } from "../pages/addProjectViaUiPageAndSelectors";
 import {
+  clickCancelEditProject,
   clickEditProject,
+  clickHeaderMenuItem,
   getProjectAnnouncement,
   getProjectName,
 } from "../pages/projectPage/projectPageUi";
 import { isPageOpened } from "../pages/isPageOpened";
 import { maximize } from "../utils/browserActions";
 import { project } from "../dataProject/randomDataProjects";
+import {
+  addTestCaseViaUi,
+  clickAddTestCase,
+  clickCancelEditTestCase,
+  clickEditTestCase,
+  getTestCaseName,
+  SELECTOR,
+} from "../pages/projectPage/testCasePageUi";
+import { testCase } from "../dataProject/randomDataTestCase";
+import { HEADERS_MENU_ITEM } from "../pages/projectPage/headersMenuItem";
 
-describe("Creat project UI test", async function () {
+
+describe("Creat Test Case UI test only", async function () {
   before(async () => {
     await deleteAllProjects();
     await maximize();
   });
-  it("Should login and create a new project UI test", async function () {
+  it("Should login and create a new project  UI test", async function () {
     await browser.url("/");
     await logIn(USER);
 
@@ -42,5 +55,24 @@ describe("Creat project UI test", async function () {
 
     const projectAnnouncement = await getProjectAnnouncement();
     expect(projectAnnouncement).to.eql(project.announcement);
+  });
+
+  it("Creat test case UI test", async function () {
+    await clickCancelEditProject();
+
+    await clickHeaderMenuItem(HEADERS_MENU_ITEM.TEST_CASES);
+    expect(
+      await isPageOpened(SELECTOR.TITLE_TEST_CASE),
+      "Page add test case should be opened"
+    ).to.be.true;
+
+    await clickAddTestCase();
+    await addTestCaseViaUi(testCase);
+
+    await clickEditTestCase();
+    const testCaseName = await getTestCaseName();
+    expect(testCaseName).to.eql(testCase.name);
+
+    await clickCancelEditTestCase();
   });
 });
