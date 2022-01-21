@@ -26,15 +26,15 @@ import {
   SELECTOR,
 } from "../pages/projectPage/testCasePageUi";
 import { testCase } from "../dataProject/randomDataTestCase";
-import { HEADERS_MENU_ITEM } from "../pages/projectPage/headersMenuItem";
+import { HEADERS_MENU_ITEM } from "../pages/projectPage/labels";
 
 
-describe("Creat Test Case UI test only", async function () {
+describe("Create new project and create test case UI test only", async function () {
   before(async () => {
     await deleteAllProjects();
     await maximize();
   });
-  it("Should login and create a new project  UI test", async function () {
+  it("Should be login and create a new project UI test", async function () {
     await browser.url("/");
     await logIn(USER);
 
@@ -51,13 +51,13 @@ describe("Creat Test Case UI test only", async function () {
     await clickEditProject();
 
     const projectName = await getProjectName();
-    expect(projectName).to.eql(project.name);
-
     const projectAnnouncement = await getProjectAnnouncement();
+
+    expect(projectName).to.eql(project.name);
     expect(projectAnnouncement).to.eql(project.announcement);
   });
 
-  it("Creat test case UI test", async function () {
+  it("Should be creat test case UI test", async function () {
     await clickCancelEditProject();
 
     await clickHeaderMenuItem(HEADERS_MENU_ITEM.TEST_CASES);
