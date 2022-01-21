@@ -1,7 +1,8 @@
+import element from "../utils/element";
 
 export async function logIn({EMAIL, PASSWORD}){
-    await $("#name").addValue(EMAIL);
-    await $("#password").addValue(PASSWORD);
-    await $('#button_primary').click();
+    await element("#name").setValue(EMAIL);
+    await element("#password").setValue(PASSWORD);
+    await element('#button_primary').clickElement();
 }
 

@@ -1,3 +1,5 @@
+import element from "../utils/element";
+
 export function isPageOpened(selector) {
-  return $(selector).waitForDisplayed();
+  return element(selector).elementWaitForDisplayed();
 }

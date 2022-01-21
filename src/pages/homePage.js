@@ -1,3 +1,5 @@
+import element from "../utils/element";
+
 const SELECTOR = {
   USERNAME: "//span[@class = 'navigation-username']",
   CLICK_ADD_PROJECT: "#sidebar-projects-add",
@@ -5,13 +7,13 @@ const SELECTOR = {
 };
 
 export function getCurrentUsername() {
-  return $(SELECTOR.USERNAME).getText();
+  return element(SELECTOR.USERNAME).getElementText();
 }
 
 export async function openProject(projectName) {
-  await $(`${SELECTOR.OPEN_PROJECT}'${projectName}']`).click();
+  await element(`${SELECTOR.OPEN_PROJECT}'${projectName}']`).clickElement();
 }
 
 export async function clickAddProject() {
-  await $(SELECTOR.CLICK_ADD_PROJECT).click();
+  await element(SELECTOR.CLICK_ADD_PROJECT).clickElement();
 }

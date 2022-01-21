@@ -1,3 +1,5 @@
+import element from "../../utils/element";
+
 export const SELECTOR = {
   ADD_TEST_CASE: "#sidebar-cases-add",
   TITLE_TEST_CASE: "//div[contains(@class, 'page_title')]",
@@ -11,22 +13,22 @@ const ADD_TEST_CASE_SELECTORS = {
 };
 
 export async function clickAddTestCase() {
-  await $(SELECTOR.ADD_TEST_CASE).click();
+  await element(SELECTOR.ADD_TEST_CASE).clickElement();
 }
 
 export async function addTestCaseViaUi({ name }) {
-  await $(ADD_TEST_CASE_SELECTORS.NAME).addValue(name);
-  await $(ADD_TEST_CASE_SELECTORS.ACCEPT).click();
+  await element(ADD_TEST_CASE_SELECTORS.NAME).setValue(name);
+  await element(ADD_TEST_CASE_SELECTORS.ACCEPT).clickElement();
 }
 
 export async function clickEditTestCase() {
-  await $(SELECTOR.EDIT_TEST_CASE).click();
+  await element(SELECTOR.EDIT_TEST_CASE).clickElement();
 }
 
 export function getTestCaseName() {
-  return $(ADD_TEST_CASE_SELECTORS.NAME).getValue();
+  return element(ADD_TEST_CASE_SELECTORS.NAME).getElementValue();
 }
 
 export async function clickCancelEditTestCase() {
-  await $(SELECTOR.CANCEL_EDIT_CASE).click();
+  await element(SELECTOR.CANCEL_EDIT_CASE).clickElement();
 }

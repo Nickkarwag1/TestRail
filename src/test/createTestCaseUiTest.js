@@ -27,12 +27,13 @@ import {
 } from "../pages/projectPage/testCasePageUi";
 import { testCase } from "../dataProject/randomDataTestCase";
 import { HEADERS_MENU_ITEM } from "../pages/projectPage/labels";
-
+import log from "loglevel";
 
 describe("Create new project and create test case UI test only", async function () {
   before(async () => {
     await deleteAllProjects();
     await maximize();
+    log.enableAll();
   });
   it("Should be login and create a new project UI test", async function () {
     await browser.url("/");
