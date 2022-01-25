@@ -37,6 +37,11 @@ export default function element(selector) {
     return value;
   }
 
+  async function elementIsDisplayed() {
+    log.info(`Element is displayed xpath: ${selector}`);
+    return elem.isDisplayed();
+  }
+
   return {
     clickElement,
     getElementText,
@@ -44,5 +49,6 @@ export default function element(selector) {
     moveToElement,
     elementWaitForDisplayed,
     getElementValue,
+    elementIsDisplayed,
   };
 }

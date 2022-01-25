@@ -47,7 +47,12 @@ export async function findTestCaseNameAndDelete(testCaseName) {
   await elem.clickElement();
 }
 
-export async function testCaseDeletePermanently() {
+export async function deleteTestCasePermanently() {
   await element(SELECTOR.DELETE_PERMANENTLY).clickElement();
   await element(SELECTOR.CONFIRMATION_DELETE_PERMANENTLY).clickElement();
+}
+
+export function isCaseInTestCase(testCaseName) {
+  const elem = element(`${SELECTOR.FIND_TEST_CASE_NAME}'${testCaseName}']`);
+  return elem.elementIsDisplayed();
 }
