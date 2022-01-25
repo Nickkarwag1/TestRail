@@ -22,8 +22,10 @@ import {
   clickAddTestCase,
   clickCancelEditTestCase,
   clickEditTestCase,
+  findTestCaseNameAndDelete,
   getTestCaseName,
   SELECTOR,
+  testCaseDeletePermanently,
 } from "../pages/projectPage/testCasePageUi";
 import { testCase } from "../dataProject/randomDataTestCase";
 import { HEADERS_MENU_ITEM } from "../pages/projectPage/labels";
@@ -64,7 +66,7 @@ describe("Create new project and create test case UI test only", async function 
     await clickHeaderMenuItem(HEADERS_MENU_ITEM.TEST_CASES);
     expect(
       await isPageOpened(SELECTOR.TITLE_TEST_CASE),
-      "Page add test case should be opened"
+      "Should be opened page add test case"
     ).to.be.true;
 
     await clickAddTestCase();
@@ -75,5 +77,16 @@ describe("Create new project and create test case UI test only", async function 
     expect(testCaseName).to.eql(testCase.name);
 
     await clickCancelEditTestCase();
+  });
+
+  it("Should be delete test case UI test", async function () {
+    await clickHeaderMenuItem(HEADERS_MENU_ITEM.TEST_CASES);
+    expect(
+      await isPageOpened(SELECTOR.TITLE_TEST_CASE),
+      "Should be opened page test case"
+    ).to.be.true;
+
+    await findTestCaseNameAndDelete(testCase.name);
+    await testCaseDeletePermanently();
   });
 });

@@ -1,9 +1,9 @@
 const request = require("supertest");
 
-const BASE_URL = `https://nickkarsosi.testrail.io/`;
+const BASE_URL = `https://nickkar.testrail.io/`;
 const USER = {
-    EMAIL: 'nickkarsosi@gmail.com',
-    PASSWORD : 'vQezA9pT.2x5VefQchBH',
+    EMAIL: 'nickkarsosi+1@gmail.com',
+    PASSWORD : 'ZzyLsLi38fgOY2/YZKt1',
     USERNAME : "Nick Kar"
 }
 

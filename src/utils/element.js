@@ -10,8 +10,9 @@ export default function element(selector) {
   }
 
   async function getElementText() {
-    log.info(`Get text element xpath: ${selector}`);
-    return elem.getText();
+    const text = await elem.getText();
+    log.info(`Get text ${text} in element xpath: ${selector}`);
+    return text;
   }
 
   async function setValue(value) {
@@ -31,8 +32,9 @@ export default function element(selector) {
   }
 
   async function getElementValue() {
-    log.info(`Get value element xpath: ${selector}`);
-    return elem.getValue();
+    const value = await elem.getValue();
+    log.info(`Get value ${value} in element xpath: ${selector}`);
+    return value;
   }
 
   return {
