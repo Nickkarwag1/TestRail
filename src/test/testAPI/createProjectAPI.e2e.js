@@ -1,13 +1,13 @@
-import { createProject, deleteAllProjects } from "../services/projectService";
-import { BASE_URL, USER } from "../config/config";
+import { createProject, deleteAllProjects } from "../../services/projectService";
+import { BASE_URL, USER } from "../../config/config";
 import { expect } from "chai";
-import { logIn } from "../pages/loginPage";
-import { getCurrentUsername, openProject } from "../pages/homePage";
+import { logIn } from "../../pages/loginPage";
+import { getCurrentUsername, openProject } from "../../pages/homePage";
 import {
   getProductDescription,
   getCompanyName,
   getRandomBoolean,
-} from "../utils/faker";
+} from "../../utils/faker";
 
 describe("Creat project using API", async function () {
   before(async () => {

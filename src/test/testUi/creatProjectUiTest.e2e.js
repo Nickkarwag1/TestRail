@@ -1,25 +1,27 @@
-import { deleteAllProjects } from "../services/projectService";
-import { logIn } from "../pages/loginPage";
-import { USER } from "../config/config";
-import { clickAddProject, getCurrentUsername } from "../pages/homePage";
+import { deleteAllProjects } from "../../services/projectService";
+import { logIn } from "../../pages/loginPage";
+import { USER } from "../../config/config";
+import { clickAddProject, getCurrentUsername } from "../../pages/homePage";
 import { expect } from "chai";
 import {
   ADD_PROJECT_SELECTORS,
   addProjectViaUi,
-} from "../pages/addProjectViaUiPageAndSelectors";
+} from "../../pages/addProjectViaUiPageAndSelectors";
 import {
   clickEditProject,
   getProjectAnnouncement,
   getProjectName,
-} from "../pages/projectPage/projectPageUi";
-import { isPageOpened } from "../pages/isPageOpened";
-import { maximize } from "../utils/browserActions";
-import { project } from "../dataProject/randomDataProjects";
+} from "../../pages/projectPage/projectPageUi";
+import { isPageOpened } from "../../pages/isPageOpened";
+import { maximize } from "../../utils/browserActions";
+import { project } from "../../dataProject/randomDataProjects";
+import log from "loglevel";
 
 describe("Creat project UI test", async function () {
   before(async () => {
     await deleteAllProjects();
     await maximize();
+    log.enableAll();
   });
   it("Should login and create a new project UI test", async function () {
     await browser.url("/");

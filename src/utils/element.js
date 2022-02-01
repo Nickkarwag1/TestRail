@@ -41,6 +41,17 @@ export default function element(selector) {
     log.info(`Element is displayed xpath: ${selector}`);
     return elem.isDisplayed();
   }
+  async function scrollToElement() {
+    log.info(`Scroll to element xpath: ${selector}`);
+    await elem.scrollIntoView();
+  }
+
+  async function elementClearValue() {
+    const value = await elem.getValue();
+    log.info(`Clear value ${value} in element xpath: ${selector}`);
+    await elem.clearValue();
+    return value;
+  }
 
   return {
     clickElement,
@@ -50,5 +61,7 @@ export default function element(selector) {
     elementWaitForDisplayed,
     getElementValue,
     elementIsDisplayed,
+    scrollToElement,
+    elementClearValue,
   };
 }
