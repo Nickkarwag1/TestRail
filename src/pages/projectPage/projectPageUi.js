@@ -1,4 +1,5 @@
 import { ADD_PROJECT_SELECTORS } from "../addProjectViaUiPageAndSelectors";
+import element from "../../utils/element";
 
 export const SELECTOR = {
   EDIT_PROJECT: "//a[contains(@class, 'button-edit')]",
@@ -8,21 +9,21 @@ export const SELECTOR = {
 };
 
 export async function clickEditProject() {
-  await $(SELECTOR.EDIT_PROJECT).click();
+  await element(SELECTOR.EDIT_PROJECT).clickElement();
 }
 
 export function getProjectName() {
-  return $(ADD_PROJECT_SELECTORS.NAME).getValue();
+  return element(ADD_PROJECT_SELECTORS.NAME).getElementValue();
 }
 
 export function getProjectAnnouncement() {
-  return $(ADD_PROJECT_SELECTORS.ANNOUNCEMENT).getValue();
+  return element(ADD_PROJECT_SELECTORS.ANNOUNCEMENT).getElementValue();
 }
 
 export async function clickCancelEditProject() {
-  await $(SELECTOR.CANCEL_EDIT_PROJECT).click();
+  await element(SELECTOR.CANCEL_EDIT_PROJECT).clickElement();
 }
 
 export async function clickHeaderMenuItem(item) {
-  await $(`${SELECTOR.HEADER_MENU}'${item}']`).click();
+  await element(`${SELECTOR.HEADER_MENU}'${item}']`).clickElement();
 }

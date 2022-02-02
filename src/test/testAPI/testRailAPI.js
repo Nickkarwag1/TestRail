@@ -1,10 +1,10 @@
-import {app, USER} from "../config/config";
-import STATUS_CODES from "../constants/statusCodes";
-import ENDPOINTS, {applyParams} from "../constants/endpoints";
-import HEADERS from "../constants/headers";
-import {TOKEN} from "../constants/components";
-import CONTENT_TYPES from "../constants/contentTypes";
-import {createProject} from "../services/projectService";
+import {app, USER} from "../../config/config";
+import STATUS_CODES from "../../constants/statusCodes";
+import ENDPOINTS, {applyParams} from "../../constants/endpoints";
+import HEADERS from "../../constants/headers";
+import {TOKEN} from "../../constants/components";
+import CONTENT_TYPES from "../../constants/contentTypes";
+import {createProject} from "../../services/projectService";
 
 const {OK} = STATUS_CODES;
 

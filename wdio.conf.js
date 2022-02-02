@@ -17,7 +17,7 @@ exports.config = {
         browserName: 'chrome',
         acceptInsecureCerts: true
     }],
-    logLevel: 'info',
+    logLevel: 'error',
     bail: 0,
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts

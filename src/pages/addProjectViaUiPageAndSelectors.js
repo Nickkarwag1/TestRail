@@ -1,3 +1,5 @@
+import element from "../utils/element";
+
 export const ADD_PROJECT_SELECTORS = {
   NAME: "#name",
   ANNOUNCEMENT: "#announcement",
@@ -11,8 +13,8 @@ export async function addProjectViaUi({
   announcement,
   show_announcement,
 }) {
-  await $(ADD_PROJECT_SELECTORS.NAME).addValue(name);
-  await $(ADD_PROJECT_SELECTORS.ANNOUNCEMENT).addValue(announcement);
-  await $(ADD_PROJECT_SELECTORS.SHOW_ANNOUNCEMENT).addValue(show_announcement);
-  await $(ADD_PROJECT_SELECTORS.ACCEPT).click();
+  await element(ADD_PROJECT_SELECTORS.NAME).setValue(name);
+  await element(ADD_PROJECT_SELECTORS.ANNOUNCEMENT).setValue(announcement);
+  await element(ADD_PROJECT_SELECTORS.SHOW_ANNOUNCEMENT).setValue(show_announcement);
+  await element(ADD_PROJECT_SELECTORS.ACCEPT).clickElement();
 }

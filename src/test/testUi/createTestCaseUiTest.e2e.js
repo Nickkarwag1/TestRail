@@ -1,22 +1,22 @@
-import { deleteAllProjects } from "../services/projectService";
-import { logIn } from "../pages/loginPage";
-import { USER } from "../config/config";
-import { clickAddProject, getCurrentUsername } from "../pages/homePage";
+import { deleteAllProjects } from "../../services/projectService";
+import { logIn } from "../../pages/loginPage";
+import { USER } from "../../config/config";
+import { clickAddProject, getCurrentUsername } from "../../pages/homePage";
 import { expect } from "chai";
 import {
   ADD_PROJECT_SELECTORS,
   addProjectViaUi,
-} from "../pages/addProjectViaUiPageAndSelectors";
+} from "../../pages/addProjectViaUiPageAndSelectors";
 import {
   clickCancelEditProject,
   clickEditProject,
   clickHeaderMenuItem,
   getProjectAnnouncement,
   getProjectName,
-} from "../pages/projectPage/projectPageUi";
-import { isPageOpened } from "../pages/isPageOpened";
-import { maximize } from "../utils/browserActions";
-import { project } from "../dataProject/randomDataProjects";
+} from "../../pages/projectPage/projectPageUi";
+import { isPageOpened } from "../../pages/isPageOpened";
+import { maximize } from "../../utils/browserActions";
+import { project } from "../../dataProject/randomDataProjects";
 import {
   addTestCaseViaUi,
   clickAddTestCase,
@@ -24,15 +24,16 @@ import {
   clickEditTestCase,
   getTestCaseName,
   SELECTOR,
-} from "../pages/projectPage/testCasePageUi";
-import { testCase } from "../dataProject/randomDataTestCase";
-import { HEADERS_MENU_ITEM } from "../pages/projectPage/labels";
+} from "../../pages/projectPage/testCasePageUi";
+import { testCase } from "../../dataProject/randomDataTestCase";
+import { HEADERS_MENU_ITEM } from "../../pages/projectPage/labels";
+import log from "loglevel";
 
-
-describe("Create new project and create test case UI test only", async function () {
+describe("Create new project and create test case UI test ", async function () {
   before(async () => {
     await deleteAllProjects();
     await maximize();
+    log.enableAll();
   });
   it("Should be login and create a new project UI test", async function () {
     await browser.url("/");
@@ -63,7 +64,7 @@ describe("Create new project and create test case UI test only", async function 
     await clickHeaderMenuItem(HEADERS_MENU_ITEM.TEST_CASES);
     expect(
       await isPageOpened(SELECTOR.TITLE_TEST_CASE),
-      "Page add test case should be opened"
+      "Should be opened page add test case"
     ).to.be.true;
 
     await clickAddTestCase();
