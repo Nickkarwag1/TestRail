@@ -4,6 +4,7 @@ export const HEADERS_MENU_ITEM = {
     TODO: "Todo",
     MILESTONES: "Milestones",
     TEST_RUNS_RESULTS: "Test Runs & Results",
-    TEST_CASES: "Test Cases",
+    TEST_SUITES_CASES: "Test Suites & Cases",
     REPORTS: "Reports",
+    DASHBOARD: "Dashboard",
 };

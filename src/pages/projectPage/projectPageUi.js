@@ -6,6 +6,7 @@ export const SELECTOR = {
   CANCEL_EDIT_PROJECT:
     "//form[@id='form']//a[contains(@class, 'button-cancel')]",
   HEADER_MENU: "//div[@id='header']//a[normalize-space(text())= ",
+  OPEN_SUITE: "//div[@class='content-inner goals-clear']//a[text()= "
 };
 
 export async function clickEditProject() {
@@ -26,4 +27,8 @@ export async function clickCancelEditProject() {
 
 export async function clickHeaderMenuItem(item) {
   await element(`${SELECTOR.HEADER_MENU}'${item}']`).clickElement();
+}
+
+export async function openTestSuiteProject(suiteName){
+  await element(`${SELECTOR.OPEN_SUITE}'${suiteName}']`).clickElement();
 }

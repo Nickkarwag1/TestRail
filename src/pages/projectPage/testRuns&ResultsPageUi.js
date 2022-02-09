@@ -4,6 +4,8 @@ export const TEST_RUNS_SELECTORS = {
   TITLE_TEST_RUNS_RESULTS: "//div[contains(@class, 'page_title')]",
   ADD_TEST_RUNS: "#navigation-runs-add",
   EDIT_TEST_RUN: "//a[contains(@class, 'button-edit')]",
+  OPEN_TEST_RUN: "//div[@id='open']//a[text()= ",
+  CONFIRMATION_SUITES: "//button[contains(@class, 'button-left')]",
 };
 
 const ADD_TEST_RUNS_SELECTORS = {
@@ -13,6 +15,10 @@ const ADD_TEST_RUNS_SELECTORS = {
 
 export async function clickAddTestRuns() {
   await element(TEST_RUNS_SELECTORS.ADD_TEST_RUNS).clickElement();
+}
+
+export async function clickTheConfirmationSuites(){
+  await element(TEST_RUNS_SELECTORS.CONFIRMATION_SUITES).clickElement();
 }
 
 export async function getTestRunName() {
@@ -32,4 +38,10 @@ export async function addTestRunsViaUi({ name }) {
 
 export async function clickEditTestRuns() {
   await element(TEST_RUNS_SELECTORS.EDIT_TEST_RUN).clickElement();
+}
+
+export async function openTestRun(testRunName) {
+  await element(
+    `${TEST_RUNS_SELECTORS.OPEN_TEST_RUN}'${testRunName}']`
+  ).clickElement();
 }

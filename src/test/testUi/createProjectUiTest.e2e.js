@@ -1,7 +1,11 @@
 import { deleteAllProjects } from "../../services/projectService";
 import { logIn } from "../../pages/loginPage";
 import { USER } from "../../config/config";
-import { clickAddProject, getCurrentUsername } from "../../pages/homePage";
+import {
+  clickAddProject,
+  getCurrentUsername,
+  openProject,
+} from "../../pages/homePage";
 import { expect } from "chai";
 import {
   ADD_PROJECT_SELECTORS,
@@ -9,6 +13,7 @@ import {
 } from "../../pages/addProjectViaUiPageAndSelectors";
 import {
   clickEditProject,
+  clickHeaderMenuItem,
   getProjectAnnouncement,
   getProjectName,
 } from "../../pages/projectPage/projectPageUi";
@@ -16,10 +21,10 @@ import { isPageOpened } from "../../pages/isPageOpened";
 import { maximize } from "../../utils/browserActions";
 import { project } from "../../dataProject/randomDataProjects";
 import log from "loglevel";
+import { HEADERS_MENU_ITEM } from "../../pages/projectPage/labels";
 
 describe("Creat project UI test", async function () {
   before(async () => {
-    await deleteAllProjects();
     await maximize();
     log.enableAll();
   });
@@ -37,6 +42,9 @@ describe("Creat project UI test", async function () {
     ).to.be.true;
 
     await addProjectViaUi(project);
+
+    await clickHeaderMenuItem(HEADERS_MENU_ITEM.DASHBOARD);
+    await openProject(project.name);
     await clickEditProject();
 
     const projectName = await getProjectName();
