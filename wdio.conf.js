@@ -12,7 +12,7 @@ exports.config = {
 
     capabilities: [{
 
-        maxInstances: 5,
+        maxInstances: 4,
         //
         browserName: 'chrome',
         acceptInsecureCerts: true
@@ -49,11 +49,15 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
-    reporters: ['spec'],
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+    }]],
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000,
-        grep: 'only'
+        //grep: 'only'
     },
     //
     // =====

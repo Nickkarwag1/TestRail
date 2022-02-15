@@ -1,3 +1,3 @@
-export const TOKEN = "Basic bmlja2thcnNvc2krMUBnbWFpbC5jb206Wnp5THNMaTM4ZmdPWTIvWVpLdDE=";
+export const TOKEN = "Basic bmlja2thcnNvc2krMkBnbWFpbC5jb206SGhtTUR6VWVrclVFb3J5WTdtRGs=";
 
 

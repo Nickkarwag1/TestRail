@@ -1,4 +1,7 @@
-import { createProject, deleteAllProjects } from "../../services/projectService";
+import {
+  createProject,
+  deleteAllProjects,
+} from "../../services/projectService";
 import { BASE_URL, USER } from "../../config/config";
 import { expect } from "chai";
 import { logIn } from "../../pages/loginPage";
@@ -8,13 +11,18 @@ import {
   getCompanyName,
   getRandomBoolean,
 } from "../../utils/faker";
+import log from "loglevel";
+import { clickHeaderMenuItem } from "../../pages/projectPage/projectPageUi";
+import { HEADERS_MENU_ITEM } from "../../pages/projectPage/labels";
 
 describe("Creat project using API", async function () {
   before(async () => {
     await deleteAllProjects();
+    log.enableAll();
   });
   let projectName;
-  it("Should creat new project with login ", async function (done) {
+
+  it("Should creat new project with login ", async function () {
     const project = {
       name: getCompanyName(),
       announcement: getProductDescription(),
@@ -30,6 +38,8 @@ describe("Creat project using API", async function () {
 
     const username = await getCurrentUsername();
     expect(username).to.eql(USER.USERNAME);
+
+    await clickHeaderMenuItem(HEADERS_MENU_ITEM.DASHBOARD);
 
     await openProject(projectName);
   });

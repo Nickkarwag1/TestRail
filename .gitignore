@@ -118,3 +118,5 @@ dist
 .pnp.*
 
 .idea/
+.allure-results/
+.allure-report/
